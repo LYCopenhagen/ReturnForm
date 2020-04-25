@@ -1,0 +1,10 @@
+﻿@model  int
+
+@{
+    Layout = "";
+}
+
+<a asp-controller="WidgetsReturnForm" asp-action="Generate" asp-route-orderId="@Model" class="btn bg-purple">
+    <i class="fa fa-file-pdf-o"></i>
+    @T("Plugins.Widgets.ReturnForm.Button")
+</a>
