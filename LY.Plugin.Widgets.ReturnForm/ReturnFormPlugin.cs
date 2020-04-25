@@ -67,8 +67,8 @@ namespace LY.Plugin.Misc.ReturnForm
             _localizationService.AddOrUpdatePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.TitlePragragh", "Return form", "da-DK");
             _localizationService.AddOrUpdatePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.TitleDetailsPragragh", "Firma adresse", "da-DK");
 
-            _localizationService.AddOrUpdatePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Information.Name.", "Navn: ", "da-DK");
-            _localizationService.AddOrUpdatePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Information.Ordre.", "Ordre: ", "da-DK");
+            _localizationService.AddOrUpdatePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Information.Name", "Navn: ", "da-DK");
+            _localizationService.AddOrUpdatePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Information.Ordre", "Ordre: ", "da-DK");
 
             _localizationService.AddOrUpdatePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Product.Title", "\nProdukter der skal sendes retur.", "da-DK");
             _localizationService.AddOrUpdatePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Product.TableHeaderOne", "Produkter", "da-DK");
@@ -95,8 +95,8 @@ namespace LY.Plugin.Misc.ReturnForm
             _localizationService.DeletePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.TitlePragragh");
             _localizationService.DeletePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.TitleDetailsPragragh");
 
-            _localizationService.DeletePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Information.Name.");
-            _localizationService.DeletePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Information.Ordre.");
+            _localizationService.DeletePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Information.Name");
+            _localizationService.DeletePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Information.Ordre");
 
             _localizationService.DeletePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Product.Title");
             _localizationService.DeletePluginLocaleResource("Plugins.Widgets.ReturnForm.Document.Product.TableHeaderOne");

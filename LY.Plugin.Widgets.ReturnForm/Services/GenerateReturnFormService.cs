@@ -7,12 +7,27 @@ using iText.Svg.Converter;
 using LY.Plugin.Widgets.ReturnForm.Services.Contracts;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Orders;
+using Nop.Services.Localization;
 using System.IO;
 
 namespace LY.Plugin.Misc.ReturnForm.Services
 {
-    public class GenerateReturnFormService: IGenerateReturnFormService
+    public class GenerateReturnFormService : IGenerateReturnFormService
     {
+        #region Fields
+
+        private readonly ILocalizationService _localizationService;
+
+        #endregion
+
+        #region Ctor
+
+        public GenerateReturnFormService(ILocalizationService localizationService)
+        {
+            this._localizationService = localizationService;
+        }
+
+        #endregion
         public void CreateDocument(Order order, in MemoryStream stream)
         {
 
@@ -29,14 +44,14 @@ namespace LY.Plugin.Misc.ReturnForm.Services
 
             document.Add(img);
 
-            var titleParagraph = new Paragraph("RETURSEDDEL");
+            var titleParagraph = new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.TitlePragragh"));
             titleParagraph.SetBold();
             titleParagraph.SetFontSize(20);
             titleParagraph.SetTextAlignment(TextAlignment.RIGHT);
 
             document.Add(titleParagraph);
 
-            var titleDetails = new Paragraph("lycopenhagen.dk\nDanmark\nJernbanegade 7 A\n6400, Sønderborg");
+            var titleDetails = new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.TitleDetailsPragragh"));
             titleDetails.SetUnderline();
             titleDetails.SetFontSize(12);
             titleDetails.SetTextAlignment(TextAlignment.RIGHT);
@@ -55,7 +70,7 @@ namespace LY.Plugin.Misc.ReturnForm.Services
                 .UseAllAvailableWidth();
 
 
-            var cellNameContent = new Paragraph(new Text("Navn: ").SetBold())
+            var cellNameContent = new Paragraph(new Text(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Information.Name")).SetBold())
                 .Add(new Text(order.BillingAddress.FirstName + " " + order.BillingAddress.LastName));
             var informationCellName = new Cell()
                 .SetPadding(10)
@@ -64,7 +79,7 @@ namespace LY.Plugin.Misc.ReturnForm.Services
             informationTable.AddCell(informationCellName);
 
 
-            var cellOrderContent = new Paragraph(new Text("Ordre: ").SetBold())
+            var cellOrderContent = new Paragraph(new Text(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Information.Ordre")).SetBold())
                 .Add(new Text(order.Id.ToString()));
             var informationCellOrderNumber = new Cell()
                 .SetPadding(10)
@@ -78,7 +93,7 @@ namespace LY.Plugin.Misc.ReturnForm.Services
 
             #region Products 
 
-            var productsTitle = new Paragraph("\nVarer der skal returneres:")
+            var productsTitle = new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Product.Title"))
                .SetFontSize(16);
             document.Add(productsTitle);
 
@@ -86,13 +101,13 @@ namespace LY.Plugin.Misc.ReturnForm.Services
                 .SetPadding(10)
                 .SetBold()
                 .SetTextAlignment(TextAlignment.CENTER)
-                .Add(new Paragraph("Vare"));
+                .Add(new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Product.TableHeaderOne")));
 
             var productsHeaderCellTwo = new Cell()
                 .SetPadding(10)
                 .SetBold()
                 .SetTextAlignment(TextAlignment.CENTER)
-                .Add(new Paragraph("Byttes til str"));
+                .Add(new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Product.TableHeaderTwo")));
 
             var productsTable = new Table(UnitValue.CreatePercentArray(2))
                 .UseAllAvailableWidth()
@@ -116,7 +131,7 @@ namespace LY.Plugin.Misc.ReturnForm.Services
 
             #region Message
 
-            var messageTitle = new Paragraph("\nBesked til LY Copenhagen:")
+            var messageTitle = new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Message.Title"))
                 .SetFontSize(16);
             document.Add(messageTitle);
 
@@ -125,28 +140,28 @@ namespace LY.Plugin.Misc.ReturnForm.Services
 
             var doYouWantMonyBackCell = new Cell()
                 .SetPadding(10)
-                .Add(new Paragraph("ØNSKER DU PENGENE RETUR? SKAL DU SKRIVE ”JA” HER:\n\n\n"));
+                .Add(new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Message.TableColumnOne")));
 
             messageTable.AddCell(doYouWantMonyBackCell);
 
 
             var whyYouWantMonyBackCell = new Cell()
                 .SetPadding(10)
-                .Add(new Paragraph("ÅRSAG TIL ØNSKNING AF PENGE RETUR:\n\n\n\n"));
+                .Add(new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Message.TableColumnTwo")));
 
             messageTable.AddCell(whyYouWantMonyBackCell);
-           
+
             document.Add(messageTable);
 
             #endregion
 
             #region Important
 
-            var importantTitle = new Paragraph("\nVIGTIGT:")
+            var importantTitle = new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Important.Title"))
                .SetFontSize(16);
             document.Add(importantTitle);
 
-            var importantMessage = new Paragraph("Denne seddel skal vedlægges sammen med pakken, når den sendes retur.");
+            var importantMessage = new Paragraph(_localizationService.GetResource("Plugins.Widgets.ReturnForm.Document.Important.Details"));
             document.Add(importantMessage);
 
             #endregion
