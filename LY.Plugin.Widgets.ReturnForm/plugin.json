@@ -1,0 +1,11 @@
+{
+	"Group": "Widgets",
+	"FriendlyName": "Return Form",
+	"SystemName": "Widgets.ReturnForm",
+	"Version": "1.00",
+	"SupportedVersions": [ "4.20" ],
+	"Author": "LY team",
+	"DisplayOrder": 1,
+	"FileName": "LY.Plugin.Widgets.ReturnForm.dll",
+	"Description": "This adds a button on the order page for generating af return form."
+}
